@@ -17,7 +17,7 @@ const ques_index = (req, res) => {
 }
 const ques_topic = (req, res) => {
     const topics = req.query.search;
-    Ques.find({ $or: [{ 'topic': { $regex: topics } }, { 'title': { $regex: topics } }] }).sort({
+    Ques.find({ $or: [{ 'topic': { '$regex': topics, '$options' : 'i' } }, { 'title': { '$regex': topics, '$options' : 'i' } }] }).sort({
         createdAt: -1
     })
         .then((result) => {

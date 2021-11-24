@@ -18,7 +18,7 @@ const blog_index = (req, res) => {
 }
 const blog_company = (req, res) => {
     const comp = req.query.search;
-    Blog.find({ 'snippet': { $regex: comp } }).sort({
+    Blog.find({ 'snippet': { '$regex': comp, '$options': 'i' } }).sort({
         createdAt: -1
     })
         .then((result) => {
