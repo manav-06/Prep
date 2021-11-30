@@ -77,6 +77,8 @@ h4 {
   margin-left: 20px;
   min-height: 30vh;
   overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 /* index styles */

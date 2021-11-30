@@ -68,7 +68,33 @@ const ques_details = (req, res) => {
 const ques_create_get = (req, res) => {
     res.render('../project/pages/create_ques', { title: 'share' });
 }
+
+const make_right = (body) => {
+    const res = []
+    body.split("\n").forEach(ele => {
+        var cur = [];
+        ele.split(" ").forEach(word => {
+            cur.push(word)
+            if (cur.length == 15) {
+                res.push(cur)
+                cur = []
+            }
+        })
+        if (cur.length > 0) {
+            res.push(cur);
+        }
+    })
+    var ret = "";
+    res.forEach(ele => {
+        ret += ele.join(" ") + "\n";
+    })
+    // console.log(ret)
+    return ret
+}
+
+
 const ques_create_post = (req, res) => {
+    req.body.body = make_right(req.body.body)
     const que = new Ques(req.body);
     que.save()
         .then((result) => {
